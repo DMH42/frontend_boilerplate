@@ -6,12 +6,78 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "eslint . --fix",
+    "prettier": "prettier --write --single-quote ./components/ ./pages/",
+    "prettier:check": "prettier --single-quote --check ./components/ ./pages/"
+  },
+  "eslintConfig": {
+    "extends": [
+      "airbnb-typescript",
+      "plugin:@typescript-eslint/recommended",
+      "prettier"
+    ],
+    "rules": {
+      "@typescript-eslint/no-explicit-any": "warn",
+      "@typescript-eslint/no-unused-vars": "warn",
+      "import/order": "off",
+      "import/prefer-default-export": "off",
+      "no-underscore-dangle": "off",
+      "react/require-default-props": "off",
+      "max-len": [
+        "warn",
+        {
+          "code": 160
+        }
+      ],
+      "react/destructuring-assignment": "warn",
+      "react/jsx-props-no-spreading": [
+        1,
+        {
+          "exceptions": [
+            "input",
+            "textarea",
+            "Field"
+          ]
+        }
+      ],
+      "jsx-a11y/label-has-associated-control": [
+        2,
+        {
+          "labelComponents": [],
+          "labelAttributes": [],
+          "controlComponents": [
+            "Select",
+            "RequiredSelect",
+            "MoneyInput",
+            "Field",
+            "CustomInput"
+          ],
+          "assert": "both",
+          "depth": 4
+        }
+      ]
+    },
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "ignorePatterns": [
+      "*.config.js",
+      "*.test.ts",
+      "*.test.tsx",
+      "build/*"
+    ]
   },
   "dependencies": {
     "@headlessui/react": "^1.6.3",
     "@heroicons/react": "^1.0.6",
     "next": "12.1.6",
+    "prettier": "^2.6.2",
+    "prettier-eslint": "^15.0.1",
     "react": "18.1.0",
     "react-dom": "18.1.0"
   },
@@ -19,7 +85,8 @@
     "@types/node": "^17.0.36",
     "@types/react": "^18.0.9",
     "autoprefixer": "^10.4.7",
-    "eslint": "8.16.0",
+    "eslint": "^8.16.0",
+    "eslint-config-airbnb": "^19.0.4",
     "eslint-config-next": "12.1.6",
     "postcss": "^8.4.5",
     "tailwindcss": "^3.0.24",
